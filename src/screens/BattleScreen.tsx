@@ -389,7 +389,7 @@ export default function BattleScreen() {
 
 
   return (
-    <div className="h-[100dvh] overflow-y-auto overflow-x-hidden px-3 pt-2.5 pb-[calc(env(safe-area-inset-bottom)+0.4rem)] flex flex-col gap-1.5 relative">
+    <div className="h-[100dvh] overflow-hidden px-3 pt-2.5 pb-[calc(env(safe-area-inset-bottom)+0.4rem)] flex flex-col gap-1.5 relative">
       <div
         className="fixed inset-0 -z-10 bg-cover bg-center opacity-40 mix-blend-multiply"
         style={{ backgroundImage: `url('/images/backgrounds/chapter_${chapter}.webp'), linear-gradient(to bottom right, #fdfbfb, #ebedee)` }}
@@ -485,7 +485,7 @@ export default function BattleScreen() {
       </div>
 
       {/* Choices */}
-      <div className="flex-1 min-h-0 flex flex-col gap-2 pb-1 pt-1">
+      <div className="flex-1 min-h-0 overflow-y-auto flex flex-col gap-2 pb-1 pt-1 scrollbar-hide">
         {displayChoices.map((choice, idx) => {
           const isSelected = selectedAnswer === idx;
           const isAnswer = idx === displayAnswerIdx;
@@ -509,7 +509,7 @@ export default function BattleScreen() {
 
       {/* Explanation */}
       {showResult && (
-        <div className={`rounded-xl p-3 mb-2 animate-slide-up ${isCorrect ? "bg-green-50/80 border border-green-200" : "bg-red-50/80 border border-red-200"}`}>
+        <div className={`shrink-0 rounded-xl p-3 mb-2 animate-slide-up ${isCorrect ? "bg-green-50/80 border border-green-200" : "bg-red-50/80 border border-red-200"}`}>
           <p className={`font-bold text-xs mb-1 ${isCorrect ? "text-green-600" : "text-red-500"}`}>{isCorrect ? "🎉 正解！ ボスにダメージ！" : "😢 不正解... ボスの反撃！"}</p>
           <p className="text-xs text-warm-gray/60 leading-relaxed">{q.explanation}</p>
         </div>

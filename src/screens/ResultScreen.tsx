@@ -111,9 +111,9 @@ export default function ResultScreen() {
   };
 
   return (
-    <div className="min-h-[100dvh] px-4 py-6 flex flex-col relative overflow-hidden">
+    <div className="min-h-[100dvh] px-4 py-6 flex flex-col relative overflow-y-auto overflow-x-hidden pb-[calc(env(safe-area-inset-bottom)+2rem)]">
       <div
-        className="absolute inset-0 -z-10 bg-cover bg-center opacity-40 mix-blend-multiply"
+        className="fixed inset-0 -z-10 bg-cover bg-center opacity-40 mix-blend-multiply"
         style={{ backgroundImage: `url('/images/backgrounds/result_bg.webp'), linear-gradient(to bottom right, #fdfbfb, #ebedee)` }}
       />
       <ParticleEffect type={isPerfect ? "confetti" : "sparkle"} active={phase === "score" && isPerfect} count={20} />

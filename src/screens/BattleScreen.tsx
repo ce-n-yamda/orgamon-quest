@@ -195,6 +195,7 @@ export default function BattleScreen() {
         setTimeout(() => setTurnMessage(null), 1800);
       }
       if (safeNet) {
+        audio.playSE("deflect");
         setTurnMessage("🛡️ セーフティネットで反撃を無効化");
         setTimeout(() => setTurnMessage(null), 1800);
       }

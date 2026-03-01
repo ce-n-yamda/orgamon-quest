@@ -8,6 +8,7 @@ import { getBossByChapter, calcBossDamage, getBossCounterAttack, getInitialHomeo
 import { checkTeamCombo, applyComboEffects, getComboBonus } from "../logic/comboLogic";
 import { canUseSkill, applySkillEffects, getHeroById, getHeroSkillLoadout } from "../logic/skillLogic";
 import { buildFormation, buildSpeedTurnQueue, getPartyDefense, POSITION_LABELS } from "../logic/formationLogic";
+import { getItemById } from "../logic/itemLogic";
 import { ProgressBar, Badge, Modal, PastelButton, ParticleEffect } from "../components/common";
 import { audio } from "../utils/audio";
 import cardsData from "../data/cards.json";
@@ -55,6 +56,7 @@ export default function BattleScreen() {
   const addUltimateCharge = useGameStore((s) => s.addUltimateCharge);
   const resetUltimateCharge = useGameStore((s) => s.resetUltimateCharge);
   const addBuff = useGameStore((s) => s.addBuff);
+  const removeItem = useGameStore((s) => s.removeItem);
   const addCard = useGameStore((s) => s.addCard);
   const addItem = useGameStore((s) => s.addItem);
   const defeatBoss = useGameStore((s) => s.defeatBoss);
@@ -87,6 +89,7 @@ export default function BattleScreen() {
   const [battleResult, setBattleResult] = useState<"win" | "lose" | null>(null);
   const [timeLeft, setTimeLeft] = useState(BASE_TIME_LIMIT);
   const [showSkillPanel, setShowSkillPanel] = useState(false);
+  const [showItemPanel, setShowItemPanel] = useState(false);
   const [skillMessage, setSkillMessage] = useState<string | null>(null);
   const [comboMessage, setComboMessage] = useState<string | null>(null);
   const [turnMessage, setTurnMessage] = useState<string | null>(null);
@@ -224,6 +227,54 @@ export default function BattleScreen() {
       if (chapter === 9) incrementClears();
     } else { setBattleResult("lose"); addXP(20); }
     useGameStore.setState((s) => ({ ...s, _battleResult: { chapter, won: cleared, bossDefeated: bossDown, homeostasis, bossHpRemaining: bossHp, rewards: cleared && boss ? boss.rewards : null } } as typeof s));
+  };
+
+
+  const handleUseItem = (itemId: string) => {
+    if (!currentRun || battleFinished || showResult) return;
+    const count = currentRun.ownedItems[itemId] || 0;
+    if (count <= 0) return;
+
+    let used = false;
+    let message = "";
+
+    if (itemId === "wisdom_potion") {
+      if (questions[round]?.keywords?.length && !hintKeyword) {
+        setHintKeyword(questions[round].keywords![0]);
+        used = true;
+        message = "💡 知恵の薬を使用：ヒントが表示されました！";
+      } else {
+        message = "💡 この問題では知恵の薬は使えません。";
+      }
+    } else if (itemId === "time_sand") {
+      setTimeLeft(p => p + 15);
+      used = true;
+      message = "⏳ 時の砂を使用：制限時間が15秒延長されました！";
+    } else if (itemId === "clear_mist") {
+      if (currentRun.debuffs.length > 0) {
+        removeDebuff(currentRun.debuffs[0].type);
+        used = true;
+        message = "💨 クリアミストを使用：デバフを1つ解除しました！";
+      } else {
+        message = "💨 解除するデバフがありません。";
+      }
+    } else if (itemId === "homeostasis_elixir") {
+      addHomeostasis(20);
+      used = true;
+      message = "💓 恒常エリクサーを使用：ホメオスタシスが20回復しました！";
+    }
+
+    if (used) {
+      removeItem(itemId, 1);
+      audio.playSE("success");
+      setSkillMessage(message);
+      setTimeout(() => setSkillMessage(null), 2000);
+      setShowItemPanel(false);
+    } else if (message) {
+      audio.playSE("error");
+      setSkillMessage(message);
+      setTimeout(() => setSkillMessage(null), 2000);
+    }
   };
 
   const handleUseSkill = (skill: Skill) => {
@@ -467,7 +518,10 @@ export default function BattleScreen() {
       {/* Bottom */}
       <div className="flex gap-2 pt-0.5">
         {!showResult ? (
-          <button onClick={() => setShowSkillPanel(!showSkillPanel)} className="flex-1 min-h-12 py-3 bg-gradient-to-r from-lavender/80 to-pastel-purple/80 text-white rounded-xl font-bold shadow-sm text-base btn-press">⚡ スキル</button>
+          <>
+            <button onClick={() => { setShowSkillPanel(true); setShowItemPanel(false); }} className="flex-1 min-h-12 py-3 bg-gradient-to-r from-lavender/80 to-pastel-purple/80 text-white rounded-xl font-bold shadow-sm text-base btn-press">⚡ スキル</button>
+            <button onClick={() => { setShowItemPanel(true); setShowSkillPanel(false); }} className="flex-1 min-h-12 py-3 bg-gradient-to-r from-pastel-green/80 to-green-400/80 text-white rounded-xl font-bold shadow-sm text-base btn-press">🎒 アイテム</button>
+          </>
         ) : (
           <button onClick={handleNext} className="flex-1 min-h-12 py-3 bg-gradient-to-r from-coral to-pastel-pink text-white rounded-xl font-bold shadow-md text-base btn-press">{round + 1 >= totalRounds || bossHp <= 0 ? "結果を見る →" : "次のラウンド →"}</button>
         )}
@@ -514,6 +568,41 @@ export default function BattleScreen() {
               </div>
             </button>
           )}
+        </div>
+      </Modal>
+
+      {/* Item panel */}
+      <Modal
+        open={showItemPanel && !showResult}
+        onClose={() => setShowItemPanel(false)}
+        position="bottom"
+        showHandle
+        className="pb-[calc(env(safe-area-inset-bottom)+0.75rem)]"
+      >
+        <h3 className="font-bold text-warm-gray mb-3">🎒 アイテム使用</h3>
+        <div className="space-y-2 max-h-[50vh] overflow-y-auto">
+          {["wisdom_potion", "time_sand", "clear_mist", "homeostasis_elixir"].map(itemId => {
+            const count = currentRun?.ownedItems[itemId] || 0;
+            const item = getItemById(itemId);
+            if (!item) return null;
+            return (
+              <button
+                key={itemId}
+                className={`w-full text-left p-3 rounded-xl border ${count > 0 ? "glass opacity-100 btn-press border-green-200" : "bg-white/40 opacity-50 border-transparent"}`}
+                onClick={() => handleUseItem(itemId)}
+                disabled={count <= 0}
+              >
+                <div className="flex justify-between items-start mb-1">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">{item.imageUrl ? <img src={item.imageUrl} className="w-6 h-6 object-contain" /> : "🎒"}</span>
+                    <span className="font-bold text-warm-gray text-sm">{item.name}</span>
+                  </div>
+                  <Badge variant={count > 0 ? "success" : "default"} size="sm">所持: {count}</Badge>
+                </div>
+                <p className="text-xs text-warm-gray/60">{item.effect}</p>
+              </button>
+            )
+          })}
         </div>
       </Modal>
     </div>

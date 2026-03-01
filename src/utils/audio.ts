@@ -20,7 +20,7 @@ class GameAudio {
     }
 
     // Keep simple UI sound effects as Web Audio API since they are just quick blips
-    playSE(type: 'success' | 'click' | 'error' | 'level_up' | 'capture' | 'impact' | 'player_damage') {
+    playSE(type: 'success' | 'click' | 'error' | 'level_up' | 'capture' | 'impact' | 'heavy_impact' | 'player_damage' | 'heavy_player_damage' | 'deflect') {
         if (this.isMuted) return;
         this.init();
         if (!this.ctx) return;
@@ -68,9 +68,26 @@ class GameAudio {
                 playTone(100, t, 0.3, 0.6, 'square');
                 playTone(50, t, 0.2, 0.9, 'square');
                 break;
+            case 'heavy_impact':
+                playTone(100, t, 0.2, 1.0, 'sawtooth');
+                playTone(50, t + 0.1, 0.4, 1.0, 'square');
+                playTone(25, t + 0.3, 0.5, 1.0, 'sawtooth');
+                playTone(200, t, 0.1, 0.7, 'square'); 
+                break;
             case 'player_damage':
                 playTone(300, t, 0.2, 0.7, 'sawtooth');
                 playTone(250, t + 0.1, 0.3, 0.8, 'square');
+                break;
+            case 'heavy_player_damage':
+                playTone(200, t, 0.3, 1.0, 'sawtooth');
+                playTone(100, t + 0.1, 0.4, 1.0, 'square');
+                playTone(400, t, 0.1, 0.6, 'triangle');
+                playTone(50, t + 0.2, 0.5, 0.8, 'sawtooth');
+                break;
+            case 'deflect':
+                playTone(800, t, 0.1, 0.8, 'triangle');
+                playTone(1200, t + 0.05, 0.2, 0.3, 'sine');
+                playTone(400, t + 0.1, 0.1, 0.5, 'square');
                 break;
         }
     }

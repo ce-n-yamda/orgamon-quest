@@ -45,14 +45,16 @@ export function getBossCounterAttack(
   round: number,
   difficulty: Difficulty,
   partyDefense: number = 0
-): { homeostasisDamage: number; debuffs: Debuff[] } {
+): { homeostasisDamage: number; debuffs: Debuff[]; isDeflected: boolean } {
   const baseDamage = 5 + Math.floor(boss.hp / 150);
   let damage = baseDamage;
 
   if (difficulty === "hard") damage = Math.floor(damage * 1.3);
   if (difficulty === "easy") damage = Math.floor(damage * 0.7);
+  let isDeflected = false;
   if (partyDefense > 0) {
     const reductionRate = Math.min(0.5, partyDefense / 250);
+    if (reductionRate >= 0.15) isDeflected = true;
     damage = Math.max(1, Math.floor(damage * (1 - reductionRate)));
   }
 
@@ -66,7 +68,7 @@ export function getBossCounterAttack(
     }
   }
 
-  return { homeostasisDamage: damage, debuffs };
+  return { homeostasisDamage: damage, debuffs, isDeflected };
 }
 
 export function getInitialHomeostasis(difficulty: Difficulty): number {

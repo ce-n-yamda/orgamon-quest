@@ -109,22 +109,30 @@ export default function BattleScreen() {
     progressMission("boss_challenge");
   }, [chapter, boss]);
 
+  const initRoundRef = useRef(-1);
   useEffect(() => {
-    if (questions.length === 0 || round >= questions.length) return;
+    if (!currentRun || questions.length === 0 || round >= questions.length) return;
     const q = questions[round];
-    setDisplayChoices([...q.choices]);
-    setDisplayAnswerIdx(q.answerIndex);
-    setHintKeyword(null); setMaskedText(false); setFakeHighlight(null);
-    if (currentRun) {
-      if (currentRun.debuffs.some((d) => d.type === "observation_miss")) setMaskedText(true);
-      if (currentRun.debuffs.some((d) => d.type === "misinformation")) {
-        const wi = q.choices.map((_, i) => i).filter((i) => i !== q.answerIndex);
-        if (wi.length > 0) setFakeHighlight(wi[Math.floor(Math.random() * wi.length)]);
-      }
+    if (initRoundRef.current !== round) {
+      initRoundRef.current = round;
+      setDisplayChoices([...q.choices]);
+      setDisplayAnswerIdx(q.answerIndex);
+      setHintKeyword(null);
+      setFakeHighlight(null);
       const hasTP = currentRun.debuffs.some((d) => d.type === "time_pressure");
       let time = hasTP ? Math.ceil(BASE_TIME_LIMIT / 2) : BASE_TIME_LIMIT;
       if (hero?.passive?.effects) { const ext = hero.passive.effects.find((e) => e.type === "time_extend"); if (ext) time = Math.ceil(time * (1 + ext.value / 100)); }
       setTimeLeft(time);
+
+      if (currentRun.debuffs.some((d) => d.type === "misinformation")) {
+        const wi = q.choices.map((_, i) => i).filter((i) => i !== q.answerIndex);
+        if (wi.length > 0) setFakeHighlight(wi[Math.floor(Math.random() * wi.length)]);
+      }
+    }
+
+    setMaskedText(currentRun.debuffs.some((d) => d.type === "observation_miss"));
+    if (!currentRun.debuffs.some((d) => d.type === "misinformation")) {
+      setFakeHighlight(null);
     }
   }, [round, questions, currentRun, hero]);
 
@@ -149,7 +157,8 @@ export default function BattleScreen() {
       const damage = calcBossDamage(true, currentRun?.ownedCards || {}, allCards, comboBonus, attackerAtk);
       setBossHp((prev) => Math.max(0, prev - damage));
       setDamageAnim(damage);
-      audio.playSE("impact");
+      if (damage >= 40) audio.playSE("heavy_impact");
+      else audio.playSE("impact");
       setTimeout(() => setDamageAnim(0), 800);
       setTurnMessage(`⚔️ ${actingMember?.name || "味方"} の行動！ ${damage}ダメージ`);
       setTimeout(() => setTurnMessage(null), 1800);
@@ -167,7 +176,9 @@ export default function BattleScreen() {
       if (!safeNet && boss) {
         const counter = getBossCounterAttack(boss, round, difficulty, averagedDefense);
         addHomeostasis(-counter.homeostasisDamage);
-        audio.playSE("player_damage");
+        if (counter.isDeflected) audio.playSE("deflect");
+        else if (counter.homeostasisDamage >= 15) audio.playSE("heavy_player_damage");
+        else audio.playSE("player_damage");
         counter.debuffs.forEach((d) => addDebuff(d));
         const target = formation.length > 0
           ? formation[(round + 1) % formation.length]
@@ -326,9 +337,9 @@ export default function BattleScreen() {
 
 
   return (
-    <div className="h-[100dvh] overflow-hidden px-3 pt-2.5 pb-[calc(env(safe-area-inset-bottom)+0.4rem)] flex flex-col gap-1.5 relative">
+    <div className="min-h-[100dvh] overflow-y-auto overflow-x-hidden px-3 pt-2.5 pb-[calc(env(safe-area-inset-bottom)+0.4rem)] flex flex-col gap-1.5 relative">
       <div
-        className="absolute inset-0 -z-10 bg-cover bg-center opacity-40 mix-blend-multiply"
+        className="fixed inset-0 -z-10 bg-cover bg-center opacity-40 mix-blend-multiply"
         style={{ backgroundImage: `url('/images/backgrounds/chapter_${chapter}.webp'), linear-gradient(to bottom right, #fdfbfb, #ebedee)` }}
       />
       {/* Boss info */}
@@ -422,7 +433,7 @@ export default function BattleScreen() {
       </div>
 
       {/* Choices */}
-      <div className="flex-1 min-h-0 overflow-y-auto flex flex-col gap-2 pb-1 pt-1">
+      <div className="flex-1 min-h-0 flex flex-col gap-2 pb-1 pt-1">
         {displayChoices.map((choice, idx) => {
           const isSelected = selectedAnswer === idx;
           const isAnswer = idx === displayAnswerIdx;

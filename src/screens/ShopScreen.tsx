@@ -86,7 +86,7 @@ export default function ShopScreen() {
       padding="compact"
       className="min-h-[100dvh] flex flex-col pb-[calc(env(safe-area-inset-bottom)+0.25rem)]"
     >
-      <div className="flex-1 min-h-0 flex flex-col gap-2.5 overflow-hidden">
+      <div className="flex-1 flex flex-col gap-2.5">
         <GlassCard variant="strong" className="p-3 shrink-0 flex items-center justify-between">
           <span className="text-sm text-warm-gray/75">所持ポイント</span>
           <span className="text-lg font-bold text-warm-gray">💰 {currentRun.mp} MP</span>
@@ -98,10 +98,7 @@ export default function ShopScreen() {
           </div>
         )}
 
-        <div
-          className="flex-1 min-h-0 grid gap-2"
-          style={{ gridTemplateRows: `repeat(${shopItemsPerPage}, minmax(0, 1fr))` }}
-        >
+        <div className="flex flex-col gap-2.5 pb-2">
           {visibleShopItems.map((shopItem) => {
             const item = items.find((entry) => entry.id === shopItem.itemId);
             if (!item) return null;

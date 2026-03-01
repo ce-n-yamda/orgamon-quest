@@ -85,7 +85,7 @@ class GameAudio {
         const bgmFiles: Record<string, string> = {
             title: '/orgamon-quest/audio/bgm_title.mp3',
             map: '/orgamon-quest/audio/bgm_map.mp3',
-            battle: '/orgamon-quest/audio/bgm_battle.mp3',
+            battle: `/orgamon-quest/audio/bgm_battle${Math.floor(Math.random() * 5) + 1}.mp3`,
             quiz: '/orgamon-quest/audio/bgm_quiz.mp3',
             result: '/orgamon-quest/audio/bgm_result.mp3',
         };

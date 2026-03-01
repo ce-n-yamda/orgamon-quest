@@ -271,8 +271,8 @@ export default function BattleScreen() {
           <div className="w-full glass-strong rounded-2xl p-5 shadow-md mt-6 relative z-10 animate-slide-up">
             <h3 className="text-sm font-bold text-warm-gray mb-3">🎁 撃破報酬</h3>
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-pastel-blue/20 rounded-xl p-3 text-center"><p className="text-[10px] text-warm-gray/40">MP</p><p className="text-lg font-bold text-blue-600">+{boss.rewards.mp}</p></div>
-              {boss.rewards.cardId && <div className="bg-pastel-yellow/20 rounded-xl p-3 text-center"><p className="text-[10px] text-warm-gray/40">カード</p><p className="text-sm font-bold text-amber-600">🃏 ボスカード</p></div>}
+              <div className="bg-pastel-blue/20 rounded-xl p-3 text-center"><p className="text-xs text-warm-gray/40">MP</p><p className="text-lg font-bold text-blue-600">+{boss.rewards.mp}</p></div>
+              {boss.rewards.cardId && <div className="bg-pastel-yellow/20 rounded-xl p-3 text-center"><p className="text-xs text-warm-gray/40">カード</p><p className="text-sm font-bold text-amber-600">🃏 ボスカード</p></div>}
             </div>
             {boss.rewards.items.length > 0 && (
               <div className="mt-3 flex flex-wrap gap-2">{boss.rewards.items.map((itemId, i) => <Badge key={i} variant="success" size="xs" icon="🎁">{itemId}</Badge>)}</div>
@@ -339,10 +339,10 @@ export default function BattleScreen() {
           </div>
           <div className="flex-1">
             <p className="font-bold text-sm text-warm-gray">{boss.name}</p>
-            <p className="text-[10px] text-warm-gray/40">Ch.{chapter} ボス</p>
+            <p className="text-xs text-warm-gray/40">Ch.{chapter} ボス</p>
           </div>
           <div className="text-right">
-            <p className="text-[10px] text-warm-gray/40">ROUND</p>
+            <p className="text-xs text-warm-gray/40">ROUND</p>
             <p className="font-bold text-sm text-warm-gray">{round + 1}/{totalRounds}</p>
           </div>
         </div>
@@ -381,8 +381,8 @@ export default function BattleScreen() {
       {formation.length > 0 && (
         <div className="glass rounded-2xl p-2 border border-white/50">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-[10px] font-bold text-warm-gray">👥 味方フォーメーション</p>
-            <p className="text-[10px] text-warm-gray/45">平均DEF {partyDefense}</p>
+            <p className="text-xs font-bold text-warm-gray">👥 味方フォーメーション</p>
+            <p className="text-xs text-warm-gray/45">平均DEF {partyDefense}</p>
           </div>
           <div className="grid grid-cols-3 gap-2">
             {formation.map((member) => {
@@ -404,11 +404,11 @@ export default function BattleScreen() {
                     ) : (
                       <span className="text-base">{getFormationEmoji(member.id)}</span>
                     )}
-                    <span className="text-[9px] text-warm-gray/45">{POSITION_LABELS[member.slot] || `${member.slot + 1}番手`}</span>
+                    <span className="text-sm text-warm-gray/45">{POSITION_LABELS[member.slot] || `${member.slot + 1}番手`}</span>
                   </div>
-                  <p className="text-[11px] font-semibold text-warm-gray truncate">{member.name}</p>
-                  <p className="text-[9px] text-warm-gray/50">A{member.effectiveStats.atk} D{member.effectiveStats.def} S{member.effectiveStats.spd}</p>
-                  {isDamaged && <p className="text-[9px] font-bold text-red-500 mt-0.5">被弾!</p>}
+                  <p className="text-sm font-semibold text-warm-gray truncate">{member.name}</p>
+                  <p className="text-sm text-warm-gray/50">A{member.effectiveStats.atk} D{member.effectiveStats.def} S{member.effectiveStats.spd}</p>
+                  {isDamaged && <p className="text-sm font-bold text-red-500 mt-0.5">被弾!</p>}
                 </div>
               );
             })}
@@ -448,7 +448,7 @@ export default function BattleScreen() {
       {showResult && (
         <div className={`rounded-xl p-3 mb-2 animate-slide-up ${isCorrect ? "bg-green-50/80 border border-green-200" : "bg-red-50/80 border border-red-200"}`}>
           <p className={`font-bold text-xs mb-1 ${isCorrect ? "text-green-600" : "text-red-500"}`}>{isCorrect ? "🎉 正解！ ボスにダメージ！" : "😢 不正解... ボスの反撃！"}</p>
-          <p className="text-[10px] text-warm-gray/60 leading-relaxed">{q.explanation}</p>
+          <p className="text-xs text-warm-gray/60 leading-relaxed">{q.explanation}</p>
         </div>
       )}
 
@@ -473,13 +473,13 @@ export default function BattleScreen() {
         <div className="bg-pastel-yellow/20 rounded-xl p-3 mb-3">
           <div className="flex items-center justify-between text-xs mb-1"><span className="font-medium text-warm-gray">🌈 アルティメット</span><span className="font-bold text-amber-600">{currentRun.ultimateCharge}/{hero.ultimate.chargeRequired || 5}</span></div>
           <ProgressBar value={currentRun.ultimateCharge || 0} max={hero.ultimate.chargeRequired || 5} gradient="from-amber-400 to-yellow-300" size="sm" />
-          <p className="text-[10px] text-warm-gray/45 mt-1">
+          <p className="text-xs text-warm-gray/45 mt-1">
             正解1回ごとに+1。必要値に達するとアルティメットを使用できます。
           </p>
         </div>
-        {combo && <div className="bg-pastel-pink/15 rounded-xl p-2 mb-3 border border-pink-200/40"><p className="text-xs font-bold text-pink-600">💥 コンボ: {combo.name}</p><p className="text-[10px] text-warm-gray/40">{combo.description}</p></div>}
+        {combo && <div className="bg-pastel-pink/15 rounded-xl p-2 mb-3 border border-pink-200/40"><p className="text-xs font-bold text-pink-600">💥 コンボ: {combo.name}</p><p className="text-xs text-warm-gray/40">{combo.description}</p></div>}
         <div className="space-y-2 pb-2">
-          {equippedSkills.map((skill) => {
+          {(currentAttacker?.id === hero?.id ? equippedSkills : (currentRun?.team.find(c => c.id === currentAttacker?.id)?.skills || [])).map((skill) => {
             const cd = currentRun.skillCooldowns[skill.id] || 0;
             const usable = canUseSkill(skill.id, currentRun.skillCooldowns, currentRun.ultimateCharge, skill);
             return (
@@ -487,19 +487,21 @@ export default function BattleScreen() {
                 className={`w-full min-h-14 text-left p-3 rounded-xl transition-all ${usable ? "bg-white/80 hover:bg-white shadow-sm btn-press" : "bg-gray-100/60 opacity-40"}`}>
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-bold shrink-0 shadow-sm" style={{ backgroundColor: cd > 0 ? "#ccc" : hero.themeColor }}>{cd > 0 ? `CD${cd}` : "⚡"}</div>
-                  <div className="flex-1 min-w-0"><p className="font-bold text-sm text-warm-gray">{skill.name}</p><p className="text-[11px] text-warm-gray/40 truncate">{skill.description}</p></div>
+                  <div className="flex-1 min-w-0"><p className="font-bold text-sm text-warm-gray">{skill.name}</p><p className="text-xs text-warm-gray/40 truncate">{skill.description}</p></div>
                 </div>
               </button>
             );
           })}
-          <button onClick={() => { if (canUseSkill(hero.ultimate.id, currentRun.skillCooldowns, currentRun.ultimateCharge, hero.ultimate)) handleUseSkill(hero.ultimate); }}
-            disabled={!canUseSkill(hero.ultimate.id, currentRun.skillCooldowns, currentRun.ultimateCharge, hero.ultimate)}
-            className={`w-full min-h-14 text-left p-3 rounded-xl border-2 border-dashed transition-all ${canUseSkill(hero.ultimate.id, currentRun.skillCooldowns, currentRun.ultimateCharge, hero.ultimate) ? "border-amber-300 bg-amber-50/80 hover:bg-amber-100 btn-press" : "border-gray-200 bg-gray-50/60 opacity-40"}`}>
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-400 to-yellow-300 flex items-center justify-center text-white text-lg shrink-0 shadow-sm">🌈</div>
-              <div className="flex-1 min-w-0"><p className="font-bold text-sm text-warm-gray">{hero.ultimate.name}</p><p className="text-[11px] text-warm-gray/40 truncate">{hero.ultimate.description}</p></div>
-            </div>
-          </button>
+          {currentAttacker?.id === hero?.id && (
+            <button onClick={() => { if (canUseSkill(hero.ultimate.id, currentRun.skillCooldowns, currentRun.ultimateCharge, hero.ultimate)) handleUseSkill(hero.ultimate); }}
+              disabled={!canUseSkill(hero.ultimate.id, currentRun.skillCooldowns, currentRun.ultimateCharge, hero.ultimate)}
+              className={`w-full min-h-14 text-left p-3 rounded-xl border-2 border-dashed transition-all ${canUseSkill(hero.ultimate.id, currentRun.skillCooldowns, currentRun.ultimateCharge, hero.ultimate) ? "border-amber-300 bg-amber-50/80 hover:bg-amber-100 btn-press" : "border-gray-200 bg-gray-50/60 opacity-40"}`}>
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-400 to-yellow-300 flex items-center justify-center text-white text-lg shrink-0 shadow-sm">🌈</div>
+                <div className="flex-1 min-w-0"><p className="font-bold text-sm text-warm-gray">{hero.ultimate.name}</p><p className="text-xs text-warm-gray/40 truncate">{hero.ultimate.description}</p></div>
+              </div>
+            </button>
+          )}
         </div>
       </Modal>
     </div>

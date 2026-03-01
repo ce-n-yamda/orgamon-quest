@@ -285,8 +285,8 @@ export default function ZukanScreen() {
                         <div
                           className="w-10 h-10 flex items-center justify-center shrink-0"
                         >
-                          {comp.imageUrl ? (
-                            <img src={comp.imageUrl} alt={comp.name} className="w-full h-full object-cover rounded-full shadow-sm border border-white/50" />
+                          {(comp.imageUrl || (comp.type === "hero" ? heroes.find((h: any) => h.id === comp.heroRef)?.imageUrl : undefined)) ? (
+                            <img src={comp.imageUrl || (comp.type === "hero" ? heroes.find((h: any) => h.id === comp.heroRef)?.imageUrl : undefined)} alt={comp.name} className="w-full h-full object-cover rounded-full shadow-sm border border-white/50" />
                           ) : (
                             <div className="w-full h-full rounded-full flex items-center justify-center text-lg" style={{ backgroundColor: rarityColor[comp.rarity] + "25" }}>
                               {typeEmoji[comp.type] || "👤"}

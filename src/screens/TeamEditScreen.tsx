@@ -86,7 +86,7 @@ export default function TeamEditScreen() {
           name: companion?.name || "不明メンバー",
           role: "companion" as const,
           emoji: companion ? typeEmoji[companion.type] || "👤" : "👤",
-          imageUrl: companion?.imageUrl,
+          imageUrl: companion?.imageUrl || (companion?.type === "hero" ? heroes.find(h => h.id === companion.heroRef)?.imageUrl : undefined),
           subLabel: companion
             ? `Lv.${companion.level} ${getCompanionTypeName(companion.type)}`
             : "データなし",
@@ -167,12 +167,12 @@ export default function TeamEditScreen() {
       <div className="flex-1 min-h-0 flex flex-col gap-2.5 overflow-hidden">
         <GlassCard variant="strong" className="p-3 shrink-0">
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-sm font-bold text-warm-gray">並び順（1〜3番手）</h3>
-            <Badge variant="warning" size="xs" className="max-w-[55%] truncate">
+            <h3 className="text-base font-bold text-warm-gray">並び順（1〜3番手）</h3>
+            <Badge variant="warning" size="sm" className="max-w-[55%] truncate">
               {formationMembers[0]?.name || "未設定"} がリーダー
             </Badge>
           </div>
-          <p className="text-[11px] text-indigo-700/80 mb-2">
+          <p className="text-xs text-indigo-700/80 mb-2">
             リーダーを含めて上下移動できます。番手ごとに能力補正が変わります。
           </p>
           <div className="grid grid-cols-3 gap-2">
@@ -188,14 +188,14 @@ export default function TeamEditScreen() {
                   )}
                   <Badge variant="info" size="xs">{POSITION_LABELS[index] || `${index + 1}番手`}</Badge>
                 </div>
-                <p className="text-xs font-bold text-warm-gray truncate mt-1">{member.name}</p>
-                <p className="text-[10px] text-warm-gray/45 truncate">{member.subLabel}</p>
-                <p className="text-[10px] text-indigo-600/75 mt-0.5">{POSITION_EFFECT_LABELS[index]}</p>
+                <p className="text-sm font-bold text-warm-gray truncate mt-1">{member.name}</p>
+                <p className="text-xs text-warm-gray/45 truncate">{member.subLabel}</p>
+                <p className="text-xs text-indigo-600/75 mt-0.5">{POSITION_EFFECT_LABELS[index]}</p>
                 <div className="flex items-center gap-1 mt-1.5">
                   <button
                     onClick={() => moveFormationMember(index, index - 1)}
                     disabled={index === 0}
-                    className={`flex-1 min-h-8 text-[11px] rounded-md py-1.5 font-bold ${index === 0 ? "bg-gray-100 text-warm-gray/30" : "bg-sky-100 text-sky-700 btn-press"
+                    className={`flex-1 min-h-8 text-xs rounded-md py-1.5 font-bold ${index === 0 ? "bg-gray-100 text-warm-gray/30" : "bg-sky-100 text-sky-700 btn-press"
                       }`}
                   >
                     ↑ 上へ
@@ -203,9 +203,9 @@ export default function TeamEditScreen() {
                   <button
                     onClick={() => moveFormationMember(index, index + 1)}
                     disabled={index >= formationMembers.length - 1}
-                    className={`flex-1 min-h-8 text-[11px] rounded-md py-1.5 font-bold ${index >= formationMembers.length - 1
-                        ? "bg-gray-100 text-warm-gray/30"
-                        : "bg-sky-100 text-sky-700 btn-press"
+                    className={`flex-1 min-h-8 text-xs rounded-md py-1.5 font-bold ${index >= formationMembers.length - 1
+                      ? "bg-gray-100 text-warm-gray/30"
+                      : "bg-sky-100 text-sky-700 btn-press"
                       }`}
                   >
                     ↓ 下へ
@@ -218,15 +218,15 @@ export default function TeamEditScreen() {
 
         <GlassCard className="p-3 flex-1 flex flex-col overflow-hidden">
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-sm font-bold text-warm-gray">仲間選択</h3>
-            <p className="text-[11px] text-warm-gray/45">{clampedCandidatePage + 1}/{totalCandidatePages} ページ</p>
+            <h3 className="text-base font-bold text-warm-gray">仲間選択</h3>
+            <p className="text-xs text-warm-gray/45">{clampedCandidatePage + 1}/{totalCandidatePages} ページ</p>
           </div>
 
           {ownedCompanions.length === 0 ? (
             <div className="flex-1 grid place-items-center text-center">
               <div>
                 <div className="text-3xl mb-2">🔍</div>
-                <p className="text-xs text-warm-gray/40">仲間がまだいません</p>
+                <p className="text-sm text-warm-gray/40">仲間がまだいません</p>
               </div>
             </div>
           ) : (
@@ -242,10 +242,10 @@ export default function TeamEditScreen() {
                       onClick={() => toggleTeamMember(comp)}
                       disabled={disabled}
                       className={`text-left rounded-xl p-3 min-h-[76px] transition-all ${inTeam
-                          ? "bg-pastel-green/20 border-2 border-green-300/50"
-                          : disabled
-                            ? "bg-gray-100/60 opacity-40"
-                            : "bg-white/60 hover:bg-white/80 btn-press border border-white/70"
+                        ? "bg-pastel-green/20 border-2 border-green-300/50"
+                        : disabled
+                          ? "bg-gray-100/60 opacity-40"
+                          : "bg-white/60 hover:bg-white/80 btn-press border border-white/70"
                         }`}
                     >
                       <div className="flex items-center gap-2">
@@ -253,24 +253,24 @@ export default function TeamEditScreen() {
                           className="w-9 h-9 rounded-full flex items-center justify-center text-lg shrink-0"
                           style={{ backgroundColor: rarityColor[comp.rarity] + "25" }}
                         >
-                          {comp.imageUrl ? (
-                            <img src={comp.imageUrl} alt={comp.name} className="w-full h-full object-cover rounded-full shadow-sm" />
+                          {(comp.imageUrl || (comp.type === "hero" ? heroes.find(h => h.id === comp.heroRef)?.imageUrl : undefined)) ? (
+                            <img src={comp.imageUrl || (comp.type === "hero" ? heroes.find(h => h.id === comp.heroRef)?.imageUrl : undefined)} alt={comp.name} className="w-full h-full object-cover rounded-full shadow-sm" />
                           ) : (
                             <>{typeEmoji[comp.type] || "👤"}</>
                           )}
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-1">
-                            <p className="text-sm font-bold text-warm-gray truncate">{comp.name}</p>
+                            <p className="text-base font-bold text-warm-gray truncate">{comp.name}</p>
                             <Badge variant="rarity" size="xs" color={rarityColor[comp.rarity]}>
                               {comp.rarity}
                             </Badge>
                             {inTeam && <Badge variant="success" size="xs">編成中</Badge>}
                           </div>
-                          <p className="text-[11px] text-warm-gray/50 truncate">
+                          <p className="text-xs text-warm-gray/50 truncate">
                             Lv.{comp.level} {getCompanionTypeName(comp.type)}
                           </p>
-                          <p className="text-[11px] text-warm-gray/45">
+                          <p className="text-xs text-warm-gray/45">
                             A{comp.baseStats.atk} D{comp.baseStats.def} S{comp.baseStats.spd ?? 12}
                           </p>
                         </div>
@@ -279,7 +279,7 @@ export default function TeamEditScreen() {
                   );
                 })}
                 {currentCandidates.length < CANDIDATES_PER_PAGE && (
-                  <div className="rounded-xl border-2 border-dashed border-gray-200/50 grid place-items-center text-[11px] text-warm-gray/25">
+                  <div className="rounded-xl border-2 border-dashed border-gray-200/50 grid place-items-center text-xs text-warm-gray/25">
                     候補なし
                   </div>
                 )}
@@ -290,8 +290,8 @@ export default function TeamEditScreen() {
                   onClick={() => setCandidatePage((prev) => Math.max(0, Math.min(prev, totalCandidatePages - 1) - 1))}
                   disabled={clampedCandidatePage === 0}
                   className={`flex-1 min-h-10 rounded-lg text-sm font-bold ${clampedCandidatePage === 0
-                      ? "bg-gray-100 text-warm-gray/30"
-                      : "bg-indigo-100/70 text-indigo-700 btn-press"
+                    ? "bg-gray-100 text-warm-gray/30"
+                    : "bg-indigo-100/70 text-indigo-700 btn-press"
                     }`}
                 >
                   ← 前へ
@@ -304,8 +304,8 @@ export default function TeamEditScreen() {
                   }
                   disabled={clampedCandidatePage >= totalCandidatePages - 1}
                   className={`flex-1 min-h-10 rounded-lg text-sm font-bold ${clampedCandidatePage >= totalCandidatePages - 1
-                      ? "bg-gray-100 text-warm-gray/30"
-                      : "bg-indigo-100/70 text-indigo-700 btn-press"
+                    ? "bg-gray-100 text-warm-gray/30"
+                    : "bg-indigo-100/70 text-indigo-700 btn-press"
                     }`}
                 >
                   次へ →

@@ -42,30 +42,29 @@ class GameAudio {
 
         switch (type) {
             case 'click':
-                playTone(600, t, 0.1, 0.03, 'sine');
+                playTone(600, t, 0.1, 0.15, 'sine');
                 break;
             case 'success':
-                playTone(523.25, t, 0.15, 0.1, 'sine'); // C5
-                playTone(659.25, t + 0.1, 0.3, 0.1, 'sine'); // E5
+                playTone(523.25, t, 0.15, 0.5, 'sine'); // C5
+                playTone(659.25, t + 0.1, 0.3, 0.5, 'sine'); // E5
                 break;
             case 'error':
-                playTone(200, t, 0.2, 0.1, 'sawtooth');
-                playTone(150, t + 0.15, 0.3, 0.1, 'sawtooth');
+                playTone(200, t, 0.2, 0.5, 'sawtooth');
+                playTone(150, t + 0.15, 0.3, 0.5, 'sawtooth');
                 break;
             case 'level_up':
-                playTone(440, t, 0.15, 0.1, 'triangle');
-                playTone(554.37, t + 0.15, 0.15, 0.1, 'triangle');
-                playTone(659.25, t + 0.3, 0.15, 0.1, 'triangle');
-                playTone(880, t + 0.45, 0.5, 0.1, 'triangle');
+                playTone(440, t, 0.15, 0.5, 'triangle');
+                playTone(554.37, t + 0.15, 0.15, 0.5, 'triangle');
+                playTone(659.25, t + 0.3, 0.15, 0.5, 'triangle');
+                playTone(880, t + 0.45, 0.5, 0.5, 'triangle');
                 break;
             case 'capture':
-                playTone(392.00, t, 0.1, 0.1, 'triangle');
-                playTone(587.33, t + 0.1, 0.1, 0.1, 'triangle');
-                playTone(783.99, t + 0.2, 0.4, 0.15, 'triangle');
+                playTone(300, t, 0.1, 0.5, 'square');
+                playTone(400, t + 0.1, 0.1, 0.5, 'square');
+                playTone(500, t + 0.2, 0.4, 0.5, 'square');
                 break;
             case 'impact':
-                playTone(100, t, 0.3, 0.2, 'square');
-                playTone(80, t + 0.1, 0.4, 0.2, 'sawtooth');
+                playTone(100, t, 0.3, 0.8, 'square');
                 break;
         }
     }

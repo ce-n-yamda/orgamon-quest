@@ -389,7 +389,7 @@ export default function BattleScreen() {
 
 
   return (
-    <div className="min-h-[100dvh] overflow-y-auto overflow-x-hidden px-3 pt-2.5 pb-[calc(env(safe-area-inset-bottom)+0.4rem)] flex flex-col gap-1.5 relative">
+    <div className="h-[100dvh] overflow-y-auto overflow-x-hidden px-3 pt-2.5 pb-[calc(env(safe-area-inset-bottom)+0.4rem)] flex flex-col gap-1.5 relative">
       <div
         className="fixed inset-0 -z-10 bg-cover bg-center opacity-40 mix-blend-multiply"
         style={{ backgroundImage: `url('/images/backgrounds/chapter_${chapter}.webp'), linear-gradient(to bottom right, #fdfbfb, #ebedee)` }}
@@ -516,7 +516,7 @@ export default function BattleScreen() {
       )}
 
       {/* Bottom */}
-      <div className="flex gap-2 pt-0.5">
+      <div className="flex gap-2 pt-0.5 mt-auto shrink-0 pb-1">
         {!showResult ? (
           <>
             <button onClick={() => { setShowSkillPanel(true); setShowItemPanel(false); }} className="flex-1 min-h-12 py-3 bg-gradient-to-r from-lavender/80 to-pastel-purple/80 text-white rounded-xl font-bold shadow-sm text-base btn-press">⚡ スキル</button>

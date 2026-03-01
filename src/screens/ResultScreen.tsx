@@ -111,7 +111,7 @@ export default function ResultScreen() {
   };
 
   return (
-    <div className="min-h-[100dvh] px-4 py-6 flex flex-col relative overflow-y-auto overflow-x-hidden pb-[calc(env(safe-area-inset-bottom)+2rem)]">
+    <div className="h-[100dvh] px-4 py-6 flex flex-col relative overflow-y-auto overflow-x-hidden pb-[calc(env(safe-area-inset-bottom)+2rem)]">
       <div
         className="fixed inset-0 -z-10 bg-cover bg-center opacity-40 mix-blend-multiply"
         style={{ backgroundImage: `url('/images/backgrounds/result_bg.webp'), linear-gradient(to bottom right, #fdfbfb, #ebedee)` }}
@@ -256,7 +256,7 @@ export default function ResultScreen() {
       }
 
       {/* Actions */}
-      <div className="space-y-3 relative z-10 mt-auto">
+      <div className="space-y-3 relative z-10 mt-auto shrink-0 pt-4 pb-2">
         {phase !== "done" ? (
           <PastelButton fullWidth size="lg" gradient="coral" icon="✨" onClick={handleNextPhase}>
             {phase === "score" ? (capturedCards.length > 0 || newCompanion || droppedItems.length > 0 ? "報酬を見る →" : "結果を確認 →") : "次へ →"}

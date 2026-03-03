@@ -16,7 +16,7 @@
     "attackPower": 12,
     "attribute": "防御",
     "description": "細胞の境界を守る生体膜。物質の出入りを制御する。",
-    "imageUrl": "/orgamon-quest/images/cards/organelle.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_0.png"
   },
   {
     "id": "mitochondria",
@@ -35,7 +35,7 @@
     "attackPower": 18,
     "attribute": "エネルギー",
     "description": "細胞のエネルギー工場。ATPを産生する。",
-    "imageUrl": "/orgamon-quest/images/cards/organelle.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_1.png"
   },
   {
     "id": "ribosome",
@@ -54,7 +54,7 @@
     "attackPower": 10,
     "attribute": "合成",
     "description": "タンパク質合成の場。mRNAを読み翻訳する。",
-    "imageUrl": "/orgamon-quest/images/cards/organelle.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_2.png"
   },
   {
     "id": "nucleus",
@@ -73,7 +73,7 @@
     "attackPower": 28,
     "attribute": "遺伝",
     "description": "細胞の司令塔。DNAを格納し遺伝情報を管理。",
-    "imageUrl": "/orgamon-quest/images/cards/organelle.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_3.png"
   },
   {
     "id": "dna_double_helix",
@@ -92,7 +92,7 @@
     "attackPower": 48,
     "attribute": "遺伝",
     "description": "生命の設計図。二重らせん構造の遺伝物質。",
-    "imageUrl": "/orgamon-quest/images/cards/organelle.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_4.png"
   },
   {
     "id": "golgi_body",
@@ -111,7 +111,7 @@
     "attackPower": 14,
     "attribute": "分泌",
     "description": "タンパク質の修飾・仕分け・分泌を担う。",
-    "imageUrl": "/orgamon-quest/images/cards/organelle.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_5.png"
   },
   {
     "id": "endoplasmic_reticulum",
@@ -130,7 +130,7 @@
     "attackPower": 15,
     "attribute": "合成",
     "description": "粗面・滑面小胞体がタンパク質・脂質を合成。",
-    "imageUrl": "/orgamon-quest/images/cards/organelle.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_6.png"
   },
   {
     "id": "lysosome",
@@ -149,7 +149,7 @@
     "attackPower": 30,
     "attribute": "分解",
     "description": "酵素で老廃物や侵入物を分解する消化器官。",
-    "imageUrl": "/orgamon-quest/images/cards/organelle.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_7.png"
   },
   {
     "id": "homeostasis_core",
@@ -168,7 +168,7 @@
     "attackPower": 32,
     "attribute": "恒常",
     "description": "体内環境を一定に保つ恒常性の核。",
-    "imageUrl": "/orgamon-quest/images/cards/system.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_8.png"
   },
   {
     "id": "organ_network",
@@ -187,7 +187,7 @@
     "attackPower": 16,
     "attribute": "連携",
     "description": "各器官が連携して生命を支えるシステム。",
-    "imageUrl": "/orgamon-quest/images/cards/system.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_9.png"
   },
   {
     "id": "autonomic_node",
@@ -206,7 +206,7 @@
     "attackPower": 45,
     "attribute": "自律",
     "description": "交感・副交感神経の切り替え制御を行う節。",
-    "imageUrl": "/orgamon-quest/images/cards/system.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_10.png"
   },
   {
     "id": "periosteum_shield",
@@ -225,7 +225,7 @@
     "attackPower": 11,
     "attribute": "防御",
     "description": "骨表面を覆う膜。栄養供給と保護を担う。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_11.png"
   },
   {
     "id": "red_marrow",
@@ -244,7 +244,7 @@
     "attackPower": 26,
     "attribute": "造血",
     "description": "赤血球・白血球・血小板を産生する造血組織。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_12.png"
   },
   {
     "id": "vertebra_chain",
@@ -263,7 +263,7 @@
     "attackPower": 17,
     "attribute": "支持",
     "description": "脊柱を構成する椎骨の連鎖。体を支える。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_13.png"
   },
   {
     "id": "joint_link",
@@ -282,7 +282,7 @@
     "attackPower": 13,
     "attribute": "可動",
     "description": "骨と骨を連結し、滑らかな運動を可能にする。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_14.png"
   },
   {
     "id": "pelvis_guardian",
@@ -301,7 +301,7 @@
     "attackPower": 42,
     "attribute": "支持",
     "description": "体の中心を支える骨盤。内臓を保護する。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_15.png"
   },
   {
     "id": "red_blood_runner",
@@ -320,7 +320,7 @@
     "attackPower": 12,
     "attribute": "酸素",
     "description": "酸素を全身に運ぶ赤い細胞。ヘモグロビンを有する。",
-    "imageUrl": "/orgamon-quest/images/cards/organelle.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_16.png"
   },
   {
     "id": "white_blood_guard",
@@ -339,7 +339,7 @@
     "attackPower": 14,
     "attribute": "免疫",
     "description": "病原体を攻撃し身体を守る防御細胞。",
-    "imageUrl": "/orgamon-quest/images/cards/organelle.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_17.png"
   },
   {
     "id": "platelet_mender",
@@ -358,7 +358,7 @@
     "attackPower": 10,
     "attribute": "凝固",
     "description": "出血を止め、血管の傷を塞ぐ。",
-    "imageUrl": "/orgamon-quest/images/cards/organelle.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set2/item2_0.png"
   },
   {
     "id": "hemoglobin",
@@ -377,7 +377,7 @@
     "attackPower": 27,
     "attribute": "酸素",
     "description": "赤血球内で酸素と結合・運搬するタンパク質。",
-    "imageUrl": "/orgamon-quest/images/cards/organelle.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set2/item2_1.png"
   },
   {
     "id": "antibody_eagle",
@@ -396,7 +396,7 @@
     "attackPower": 50,
     "attribute": "免疫",
     "description": "特定の抗原に結合して無力化する免疫分子。",
-    "imageUrl": "/orgamon-quest/images/cards/organelle.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set2/item2_2.png"
   },
   {
     "id": "plasma_stream",
@@ -415,7 +415,7 @@
     "attackPower": 15,
     "attribute": "輸送",
     "description": "血球を浮かべる液体成分。栄養・老廃物を運ぶ。",
-    "imageUrl": "/orgamon-quest/images/cards/organelle.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set2/item2_3.png"
   },
   {
     "id": "gastric_acid_fortress",
@@ -434,7 +434,7 @@
     "attackPower": 18,
     "attribute": "消化",
     "description": "強酸性で食物を分解する胃の攻撃部隊。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set2/item2_4.png"
   },
   {
     "id": "intestinal_villa",
@@ -453,7 +453,7 @@
     "attackPower": 16,
     "attribute": "吸収",
     "description": "小腸の突起。表面積を増やし栄養を吸収。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set2/item2_5.png"
   },
   {
     "id": "liver_factory",
@@ -472,7 +472,7 @@
     "attackPower": 29,
     "attribute": "代謝",
     "description": "解毒・代謝・胆汁産生を担う最大の臓器。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set2/item2_6.png"
   },
   {
     "id": "pancreas_dual",
@@ -491,7 +491,7 @@
     "attackPower": 31,
     "attribute": "調節",
     "description": "インスリン分泌と消化酵素産生の二役を担う。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set2/item2_7.png"
   },
   {
     "id": "kidney_filter",
@@ -510,7 +510,7 @@
     "attackPower": 28,
     "attribute": "濾過",
     "description": "血液を濾過し尿を作る排泄器官。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set2/item2_8.png"
   },
   {
     "id": "nephron_unit",
@@ -529,7 +529,7 @@
     "attackPower": 47,
     "attribute": "濾過",
     "description": "腎臓の基本単位。糸球体と尿細管で尿を形成。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set2/item2_9.png"
   },
   {
     "id": "heart_pump",
@@ -548,7 +548,7 @@
     "attackPower": 33,
     "attribute": "循環",
     "description": "全身へ血液を送り出すポンプ。1日10万回拍動。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set2/item2_10.png"
   },
   {
     "id": "coronary_line",
@@ -567,7 +567,7 @@
     "attackPower": 52,
     "attribute": "循環",
     "description": "心臓自体に酸素と栄養を送る血管。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set2/item2_11.png"
   },
   {
     "id": "aorta_highway",
@@ -586,7 +586,7 @@
     "attackPower": 19,
     "attribute": "循環",
     "description": "心臓から出る最大の動脈。全身への幹線。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set2/item2_12.png"
   },
   {
     "id": "venous_valve",
@@ -605,7 +605,7 @@
     "attackPower": 11,
     "attribute": "循環",
     "description": "静脈内の弁。重力に逆らい血液を心臓へ戻す。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set2/item2_13.png"
   },
   {
     "id": "portal_route",
@@ -624,7 +624,7 @@
     "attackPower": 27,
     "attribute": "循環",
     "description": "消化管から肝臓へ栄養を直接運ぶ特殊な血管。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set2/item2_14.png"
   },
   {
     "id": "alveoli_bubble",
@@ -643,7 +643,7 @@
     "attackPower": 14,
     "attribute": "呼吸",
     "description": "肺の末端。酸素と二酸化炭素の交換を行う。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_0.png"
   },
   {
     "id": "trachea_cartridge",
@@ -662,7 +662,7 @@
     "attackPower": 13,
     "attribute": "呼吸",
     "description": "軟骨で支えられた空気の通り道。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_1.png"
   },
   {
     "id": "diaphragm_piston",
@@ -681,7 +681,7 @@
     "attackPower": 30,
     "attribute": "呼吸",
     "description": "呼吸の主役。収縮・弛緩で肺を膨らませる。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_2.png"
   },
   {
     "id": "epiglottis_gate",
@@ -700,7 +700,7 @@
     "attackPower": 12,
     "attribute": "呼吸",
     "description": "嚥下時に気管を閉じ、食物が肺に入るのを防ぐ。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_3.png"
   },
   {
     "id": "external_respiratory_chamber",
@@ -719,7 +719,7 @@
     "attackPower": 44,
     "attribute": "呼吸",
     "description": "肺胞と毛細血管で行う外呼吸の場。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_4.png"
   },
   {
     "id": "neuron_spark",
@@ -738,7 +738,7 @@
     "attackPower": 16,
     "attribute": "伝達",
     "description": "神経細胞。電気信号で情報を伝える。",
-    "imageUrl": "/orgamon-quest/images/cards/organelle.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_5.png"
   },
   {
     "id": "synapse_bridge",
@@ -757,7 +757,7 @@
     "attackPower": 28,
     "attribute": "伝達",
     "description": "ニューロン間の接続部。神経伝達物質で情報を渡す。",
-    "imageUrl": "/orgamon-quest/images/cards/organelle.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_6.png"
   },
   {
     "id": "cerebral_cortex",
@@ -776,7 +776,7 @@
     "attackPower": 55,
     "attribute": "認知",
     "description": "思考・記憶・言語など高次脳機能の中枢。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_7.png"
   },
   {
     "id": "retina_screen",
@@ -795,7 +795,7 @@
     "attackPower": 15,
     "attribute": "視覚",
     "description": "光を電気信号に変換する目のスクリーン。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_8.png"
   },
   {
     "id": "cochlea_antenna",
@@ -814,7 +814,7 @@
     "attackPower": 26,
     "attribute": "聴覚",
     "description": "内耳の蝸牛。振動を聴覚信号に変換する。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_9.png"
   },
   {
     "id": "cerebellum_controller",
@@ -833,6 +833,6 @@
     "attackPower": 29,
     "attribute": "運動",
     "description": "平衡・協調運動・運動学習を担当する脳領域。",
-    "imageUrl": "/orgamon-quest/images/cards/organ.webp"
+    "imageUrl": "/orgamon-quest/images/cards/set1/item1_10.png"
   }
 ]

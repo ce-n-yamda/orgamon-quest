@@ -103,6 +103,9 @@ export default function StoryScreen() {
       const postBoss = getStoryScene(chapter, "post_boss", heroId);
       if (postBoss) collected.push(postBoss);
       if (heroId) { const heroEnding = getEndingScene(heroId); if (heroEnding) collected.push(heroEnding); }
+    } else if (storyTiming === "game_start" || storyTiming === "hero_intro") {
+      const s = stories.find((s) => s.chapter === 0 && s.timing === storyTiming && (storyTiming === "game_start" || s.heroVariant === heroId));
+      if (s) collected.push(s);
     } else {
       const scene = getStoryScene(chapter, storyTiming, heroId);
       if (scene) collected.push(scene);
@@ -120,8 +123,12 @@ export default function StoryScreen() {
     setTimeout(() => setShowChar(true), 100);
   }, [chapter, storyTiming, heroId, setScreen]);
 
-  if (!currentRun || scenes.length === 0) {
-    const handleSkip = () => { setScreen(storyTiming === "pre_boss" ? "battle" : "chapter_map"); };
+  if ((!currentRun && storyTiming !== "game_start") || scenes.length === 0) {
+    const handleSkip = () => {
+      if (storyTiming === "game_start") setScreen("hero_select");
+      else if (storyTiming === "hero_intro") setScreen("home");
+      else setScreen(storyTiming === "pre_boss" ? "battle" : "chapter_map");
+    };
     return (
       <div className="h-[100dvh] flex items-center justify-center">
         <div className="text-center">
@@ -143,13 +150,19 @@ export default function StoryScreen() {
     setTimeout(() => {
       if (!isLastDialogue) { setDialogueIdx((i) => i + 1); }
       else if (!isLastScene) { setCurrentSceneIdx((i) => i + 1); setDialogueIdx(0); }
-      else { setScreen(storyTiming === "pre_boss" ? "battle" : storyTiming === "post_boss" || storyTiming === "game_ending" ? "chapter_map" : "home"); }
+      else {
+        if (storyTiming === "game_start") setScreen("hero_select");
+        else if (storyTiming === "hero_intro") setScreen("home");
+        else setScreen(storyTiming === "pre_boss" ? "battle" : storyTiming === "post_boss" || storyTiming === "game_ending" ? "chapter_map" : "home");
+      }
       setShowChar(true);
     }, 150);
   };
 
   const handleSkipAll = () => {
-    setScreen(storyTiming === "pre_boss" ? "battle" : storyTiming === "post_boss" || storyTiming === "game_ending" ? "chapter_map" : "home");
+    if (storyTiming === "game_start") setScreen("hero_select");
+    else if (storyTiming === "hero_intro") setScreen("home");
+    else setScreen(storyTiming === "pre_boss" ? "battle" : storyTiming === "post_boss" || storyTiming === "game_ending" ? "chapter_map" : "home");
   };
 
   if (!currentDialogue) return null;
@@ -189,7 +202,7 @@ export default function StoryScreen() {
           {speakerImages[currentDialogue.speaker] ? (
             <img src={speakerImages[currentDialogue.speaker]} alt={currentDialogue.speaker} className="w-full h-full object-cover object-top" />
           ) : currentDialogue.speaker === "プレイヤー" && hero ? (
-            <img src={`/images/heroes/${hero.id}.png`} alt={hero.name} className="w-full h-full object-cover object-top" />
+            <img src={hero.imageUrl} alt={hero.name} className="w-full h-full object-cover object-top" />
           ) : (
             emoji
           )}

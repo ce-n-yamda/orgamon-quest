@@ -86,7 +86,10 @@ export default function TitleScreen() {
           size="lg"
           gradient="coral"
           icon="🎮"
-          onClick={() => setScreen("hero_select")}
+          onClick={() => {
+            useGameStore.setState({ _storyTiming: "game_start", _storyChapter: 0 } as any);
+            setScreen("story");
+          }}
         >
           はじめから
         </PastelButton>

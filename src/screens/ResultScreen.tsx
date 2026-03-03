@@ -121,31 +121,31 @@ export default function ResultScreen() {
       {/* Score phase */}
       {phase === "score" && (
         <>
-          <div className="text-center mb-6 relative z-10 animate-pop">
-            <div className="text-7xl mb-3">{rating.emoji}</div>
-            <h1 className={`text-2xl font-extrabold ${rating.color}`}>{rating.label}</h1>
+          <div className="text-center mb-3 relative z-10 animate-pop">
+            <div className="text-6xl mb-2">{rating.emoji}</div>
+            <h1 className={`text-xl font-extrabold ${rating.color}`}>{rating.label}</h1>
             <p className="text-sm text-warm-gray/50 mt-1">Ch.{result.chapter} {result.chapter === 9 ? "修了テスト" : "クイズ"} 完了！</p>
           </div>
-          <GlassCard variant="strong" className="p-5 mb-5 relative z-10 animate-slide-up">
+          <GlassCard variant="strong" className="p-4 mb-3 relative z-10 animate-slide-up">
             <div className="text-center mb-4">
-              <p className="text-4xl font-extrabold text-warm-gray">{result.correct}/{result.total}</p>
+              <p className="text-3xl font-extrabold text-warm-gray">{result.correct}/{result.total}</p>
               <p className="text-sm text-warm-gray/40">正解数</p>
             </div>
             <ProgressBar value={rate} max={100} color={rate >= 80 ? "#98d4bb" : rate >= 60 ? "#f0c040" : "#f08080"} size="md" className="mb-4" />
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-white/50 rounded-xl p-3 text-center"><p className="text-[10px] text-warm-gray/40">正答率</p><p className="text-xl font-bold text-warm-gray">{rate}%</p></div>
-              <div className="bg-white/50 rounded-xl p-3 text-center"><p className="text-[10px] text-warm-gray/40">最大連続</p><p className="text-xl font-bold text-warm-gray">🔥 {result.maxStreak}</p></div>
+              <div className="bg-white/50 rounded-xl p-2 text-center"><p className="text-[10px] text-warm-gray/40">正答率</p><p className="text-xl font-bold text-warm-gray">{rate}%</p></div>
+              <div className="bg-white/50 rounded-xl p-2 text-center"><p className="text-[10px] text-warm-gray/40">最大連続</p><p className="text-xl font-bold text-warm-gray">🔥 {result.maxStreak}</p></div>
             </div>
           </GlassCard>
-          <GlassCard className="p-5 mb-5 relative z-10 animate-slide-up" style={{ animationDelay: "0.1s" }}>
+          <GlassCard className="p-4 mb-3 relative z-10 animate-slide-up" style={{ animationDelay: "0.1s" }}>
             <h3 className="text-sm font-bold text-warm-gray mb-3">🎁 獲得報酬</h3>
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-pastel-yellow/20 rounded-xl p-3 text-center"><p className="text-[10px] text-warm-gray/40">経験値</p><p className="text-lg font-bold text-amber-600">+{rewards.xp} XP</p></div>
-              <div className="bg-pastel-blue/20 rounded-xl p-3 text-center"><p className="text-[10px] text-warm-gray/40">ポイント</p><p className="text-lg font-bold text-blue-600">+{rewards.mp} MP</p></div>
-              <div className="bg-pastel-green/20 rounded-xl p-3 text-center"><p className="text-[10px] text-warm-gray/40">捕獲エネルギー</p><p className="text-lg font-bold text-green-600">+{rewards.captureEnergy}</p></div>
-              {rewards.fragments > 0 && <div className="bg-pastel-purple/20 rounded-xl p-3 text-center"><p className="text-[10px] text-warm-gray/40">知識の欠片</p><p className="text-lg font-bold text-purple-600">+{rewards.fragments}</p></div>}
+              <div className="bg-pastel-yellow/20 rounded-xl p-2 text-center"><p className="text-[10px] text-warm-gray/40">経験値</p><p className="text-lg font-bold text-amber-600">+{rewards.xp} XP</p></div>
+              <div className="bg-pastel-blue/20 rounded-xl p-2 text-center"><p className="text-[10px] text-warm-gray/40">ポイント</p><p className="text-lg font-bold text-blue-600">+{rewards.mp} MP</p></div>
+              <div className="bg-pastel-green/20 rounded-xl p-2 text-center"><p className="text-[10px] text-warm-gray/40">捕獲エネルギー</p><p className="text-lg font-bold text-green-600">+{rewards.captureEnergy}</p></div>
+              {rewards.fragments > 0 && <div className="bg-pastel-purple/20 rounded-xl p-2 text-center"><p className="text-[10px] text-warm-gray/40">知識の欠片</p><p className="text-lg font-bold text-purple-600">+{rewards.fragments}</p></div>}
             </div>
-            {isPerfect && <div className="mt-3 bg-gradient-to-r from-amber-100/60 to-yellow-100/60 rounded-xl p-3 text-center"><p className="text-sm font-bold text-amber-700">🌟 パーフェクトボーナス！</p></div>}
+            {isPerfect && <div className="mt-3 bg-gradient-to-r from-amber-100/60 to-yellow-100/60 rounded-xl p-2 text-center"><p className="text-sm font-bold text-amber-700">🌟 パーフェクトボーナス！</p></div>}
           </GlassCard>
         </>
       )}

@@ -188,7 +188,7 @@ export type Achievement = {
 export type StoryScene = {
   id: string;
   chapter: number;
-  timing: "intro" | "pre_boss" | "post_boss" | "ending";
+  timing: "game_start" | "hero_intro" | "intro" | "pre_boss" | "post_boss" | "ending";
   heroVariant?: HeroId;
   dialogue: { speaker: string; text: string; emotion?: string }[];
 };

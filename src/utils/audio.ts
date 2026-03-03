@@ -64,15 +64,13 @@ class GameAudio {
                 playTone(500, t + 0.2, 0.4, 0.5, 'square');
                 break;
             case 'impact':
-                playTone(150, t, 0.2, 0.8, 'sawtooth');
-                playTone(100, t, 0.3, 0.6, 'square');
-                playTone(50, t, 0.2, 0.9, 'square');
+                playTone(880, t, 0.05, 0.6, 'square');
+                playTone(440, t + 0.05, 0.1, 0.8, 'sawtooth');
                 break;
             case 'heavy_impact':
-                playTone(100, t, 0.2, 1.0, 'sawtooth');
-                playTone(50, t + 0.1, 0.4, 1.0, 'square');
-                playTone(25, t + 0.3, 0.5, 1.0, 'sawtooth');
-                playTone(200, t, 0.1, 0.7, 'square'); 
+                playTone(1200, t, 0.05, 0.7, 'square');
+                playTone(880, t + 0.05, 0.1, 0.9, 'square');
+                playTone(440, t + 0.1, 0.2, 1.0, 'sawtooth');
                 break;
             case 'player_damage':
                 playTone(300, t, 0.2, 0.7, 'sawtooth');

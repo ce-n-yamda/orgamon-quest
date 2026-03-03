@@ -9,6 +9,7 @@ import { checkTeamCombo, applyComboEffects, getComboBonus } from "../logic/combo
 import { canUseSkill, applySkillEffects, getHeroById, getHeroSkillLoadout } from "../logic/skillLogic";
 import { buildFormation, buildSpeedTurnQueue, getPartyDefense, POSITION_LABELS } from "../logic/formationLogic";
 import { getItemById } from "../logic/itemLogic";
+import { addCompanionExp } from "../logic/companionLogic";
 import { ProgressBar, Badge, Modal, PastelButton, ParticleEffect } from "../components/common";
 import { audio } from "../utils/audio";
 import cardsData from "../data/cards.json";
@@ -60,6 +61,7 @@ export default function BattleScreen() {
   const addCard = useGameStore((s) => s.addCard);
   const addItem = useGameStore((s) => s.addItem);
   const defeatBoss = useGameStore((s) => s.defeatBoss);
+  const updateCompanion = useGameStore((s) => s.updateCompanion);
   const progressMission = useDailyStore((s) => s.progressMission);
   const mergeFromCurrentRun = useCollectionStore((s) => s.mergeFromCurrentRun);
   const incrementClears = useMetaStore((s) => s.incrementClears);
@@ -221,7 +223,16 @@ export default function BattleScreen() {
       setBattleResult("win"); setShowVictoryParticles(true);
       defeatBoss(chapter);
       progressMission("chapter_clear");
-      if (boss) { addMP(boss.rewards.mp); addXP(boss.rewards.mp / 2); if (boss.rewards.cardId) addCard(boss.rewards.cardId); boss.rewards.items.forEach((itemId) => addItem(itemId)); }
+      if (boss) {
+        addMP(boss.rewards.mp);
+        addXP(boss.rewards.mp / 2);
+        if (boss.rewards.cardId) addCard(boss.rewards.cardId);
+        boss.rewards.items.forEach((itemId) => addItem(itemId));
+        currentRun?.team.forEach((c) => {
+          const updated = addCompanionExp(c, boss.rewards.mp / 3);
+          updateCompanion(updated);
+        });
+      }
       const updatedRun = useGameStore.getState().currentRun;
       if (updatedRun) mergeFromCurrentRun(updatedRun);
       if (chapter === 9) incrementClears();
